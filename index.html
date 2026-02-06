@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Ready Central — where drivers stay ready." />
+  <title>Ready Central</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top" aria-label="Ready Central Home">
+        <div class="logo" aria-hidden="true">
+          <img
+            src="assets/images/ready-central-logo-small.png"
+            alt="Ready Central logo"
+            loading="lazy"
+          />
+        </div>
+        <div class="brand-text">
+          <strong>Ready Central</strong>
+          <span>Driver & Load Readiness Platform</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a class="pill" href="#contact">Contact</a>
+        <button class="pill" id="menuBtn" type="button" aria-label="Open Menu">
+          <span class="hamburger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          Menu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar + overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Sidebar Navigation">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="logo small">
+          <img
+            src="assets/images/ready-central-logo-small.png"
+            alt="Ready Central logo"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <div class="sidebar-title">Ready Central</div>
+          <div class="sidebar-sub">Quick navigation</div>
+        </div>
+      </div>
+
+      <button class="xbtn" id="closeBtn" type="button" aria-label="Close Menu">✕</button>
+    </div>
+
+    <nav class="side-links">
+      <a href="#top" data-close>Home</a>
+      <a href="#services" data-close>Overview</a>
+      <a href="#how" data-close>How It Works</a>
+      <a href="#about" data-close>About</a>
+      <a href="#contact" data-close>Contact</a>
+    </nav>
+
+    <div class="side-note">
+      <strong>Template-ready:</strong> Replace text, images, and links anytime.
+    </div>
+  </aside>
+
+  <!-- Banner / Hero -->
+  <section class="banner" id="top" aria-label="Hero">
+    <div class="container hero">
+      <div class="hero-grid">
+        <div class="card hero-card">
+          <div class="kicker"><span class="dot"></span> Where drivers stay ready</div>
+
+          <h1>Ready Central</h1>
+          <h1 class="h1-sub">Clarity before the wheels roll</h1>
+
+          <p class="lead">
+            Ready Central helps drivers stay organized, compliant, and prepared —
+            reducing delays, missed steps, and last-minute surprises.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#services">See Overview</a>
+            <a class="btn" href="#contact">Request Info</a>
+          </div>
+
+          <p class="tiny">
+            Built to be simple, fast, and mobile-friendly — perfect for fleets and owner-operators.
+          </p>
+        </div>
+
+        <div class="card stats" aria-label="Highlights">
+          <div class="stat">
+            <strong>Fast</strong>
+            <span>Simple workflow</span>
+          </div>
+          <div class="stat">
+            <strong>Clear</strong>
+            <span>One place to prep</span>
+          </div>
+          <div class="stat">
+            <strong>Ready</strong>
+            <span>Less last-minute</span>
+          </div>
+          <div class="stat">
+            <strong>Mobile</strong>
+            <span>Works anywhere</span>
+          </div>
+          <div class="stat">
+            <strong>Flexible</strong>
+            <span>Fleet or solo</span>
+          </div>
+          <div class="stat">
+            <strong>Free host</strong>
+            <span>GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview / Service Cards -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Overview</h2>
+          <p class="sub">
+            Two key sections you requested — About Drivers and About Ready Central — plus a third card for positioning.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card feature">
+          <div class="icon">🚛</div>
+          <h3>About Drivers</h3>
+          <p>
+            Ready Central helps drivers stay organized, compliant, and prepared.
+            Keep critical steps and documents in one place so dispatch and operations
+            aren’t guessing — and you aren’t scrambling.
+          </p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon">📍</div>
+          <h3>About Ready Central</h3>
+          <p>
+            Ready Central is a centralized readiness hub built to reduce delays,
+            miscommunication, and last-minute issues between drivers, dispatch, and
+            operations teams.
+          </p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon">⚡</div>
+          <h3>Built for Speed & Clarity</h3>
+          <p>
+            Designed to be simple and fast on mobile. Clear readiness steps,
+            fewer surprises, smoother handoffs — and more on-time rollouts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>How It Works</h2>
+          <p class="sub">A clean 3-step flow that’s easy to explain to anyone on the team.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card feature">
+          <div class="icon">1</div>
+          <h3>Prepare</h3>
+          <p>Driver checks readiness items and documents before heading out.</p>
+        </div>
+        <div class="card feature">
+          <div class="icon">2</div>
+          <h3>Verify</h3>
+          <p>Dispatch/ops can confirm key details quickly and reduce back-and-forth.</p>
+        </div>
+        <div class="card feature">
+          <div class="icon">3</div>
+          <h3>Move</h3>
+          <p>Less delay, fewer surprises, smoother execution from start to finish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>About</h2>
+          <p class="sub">Use this section to tell the “why” in 2–5 sentences.</p>
+        </div>
+      </div>
+
+      <div class="card about-card">
+        <p>
+          <strong>Ready Central</strong> is built around one idea: preparedness prevents problems.
+          By centralizing readiness steps and communication, teams can reduce delays and keep loads moving.
+          This landing page is GitHub Pages friendly — no servers required.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Contact</h2>
+          <p class="sub">
+            This contact form copies a formatted message to clipboard (works on GitHub Pages).
+            You can swap it later for a Google Form or CRM.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="card contact-info">
+          <h3>Contact Info</h3>
+          <p>
+            <strong>Email:</strong> yourname@email.com<br />
+            <strong>Phone:</strong> (000) 000-0000<br />
+            <strong>Service Area:</strong> Nationwide / Your Region<br />
+            <strong>Hours:</strong> Mon–Fri, 9am–5pm
+          </p>
+          <a class="btn" href="mailto:yourname@email.com?subject=Ready%20Central%20Inquiry">Email from device</a>
+          <p class="tiny">Replace this info with your real contact details.</p>
+        </div>
+
+        <form class="card contact-form" id="contactForm">
+          <h3>Quick Message</h3>
+          <p class="tiny">We’ll copy your message so you can paste it anywhere.</p>
+
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" autocomplete="name" />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" placeholder="you@email.com" autocomplete="email" />
+
+          <label for="msg">Message</label>
+          <textarea id="msg" name="msg" placeholder="What do you need help with?"></textarea>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Copy Message</button>
+            <button class="btn" type="button" id="clearBtn">Clear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Ready Central</div>
+      <div class="footer-links">
+        <a href="#services">Overview</a>
+        <a href="#how">How It Works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
