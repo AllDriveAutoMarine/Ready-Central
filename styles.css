@@ -32,7 +32,7 @@ a{color:inherit}
 .hero{
   background:
     linear-gradient(180deg, rgba(10,14,28,.72), rgba(10,14,28,.25)),
-    url("assets/images/ready-central-banner.jpg");
+    url("assets/images/ready-central-banner.png");
   background-size: cover;
   background-position: center;
 }
