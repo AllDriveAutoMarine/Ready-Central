@@ -30,14 +30,11 @@ a{color:inherit}
 .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto;}
 
 .hero{
-  position:relative;
-  padding: 26px 0 18px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
   background:
-    radial-gradient(900px 420px at 15% 20%, rgba(110,168,255,.20), transparent 60%),
-    radial-gradient(900px 420px at 85% 20%, rgba(124,240,214,.14), transparent 60%),
-    linear-gradient(180deg, rgba(10,14,28,.55), rgba(10,14,28,.15));
-  backdrop-filter: blur(10px);
+    linear-gradient(180deg, rgba(10,14,28,.72), rgba(10,14,28,.25)),
+    url("assets/images/ready-central-banner.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-inner{display:flex; flex-direction:column; gap:14px;}
