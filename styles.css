@@ -375,3 +375,15 @@ textarea{min-height: 96px; resize: vertical;}
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important;}
 }
+@media (max-width: 768px) {
+  .hero {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(10,14,28,.92) 0%,
+        rgba(10,14,28,.70) 50%,
+        rgba(10,14,28,.95) 100%
+      ),
+      url("assets/images/ready-central-banner.jpg");
+  }
+}
