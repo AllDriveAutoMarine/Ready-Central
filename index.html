@@ -3,287 +3,377 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Ready Central — where drivers stay ready." />
-  <title>Ready Central</title>
+  <meta name="description" content="Ready Central — driver readiness, tracking, and export/import in one place." />
+  <title>Ready Central — Driver Readiness Manager</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#top" aria-label="Ready Central Home">
-        <div class="logo" aria-hidden="true">
-          <img
-            src="assets/images/ready-central-logo-small.png"
-            alt="Ready Central logo"
-            loading="lazy"
-          />
-        </div>
-        <div class="brand-text">
-          <strong>Ready Central</strong>
-          <span>Driver & Load Readiness Platform</span>
-        </div>
-      </a>
+  <header class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">
+            <!-- Inline SVG logo (no file needed) -->
+            <svg viewBox="0 0 64 64" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="rcg" x1="10" y1="6" x2="58" y2="56" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#6EA8FF"/>
+                  <stop offset="1" stop-color="#7CF0D6"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 38c0-14 10-26 26-26 8 0 14 2 20 7l-7 7c-4-3-8-4-13-4-10 0-16 7-16 16 0 9 6 16 16 16 6 0 10-2 14-5l7 7c-6 5-13 8-22 8C22 64 12 52 12 38Z" fill="url(#rcg)"/>
+              <path d="M48 18l4 4-24 24-12-12 4-4 8 8 20-20Z" fill="rgba(234,240,255,.95)"/>
+            </svg>
+          </div>
 
-      <div class="nav-actions">
-        <a class="pill" href="#contact">Contact</a>
-        <button class="pill" id="menuBtn" type="button" aria-label="Open Menu">
-          <span class="hamburger" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-          Menu
-        </button>
+          <div class="brand-text">
+            <h1>Ready Central</h1>
+            <p class="tagline">Driver readiness, documentation, and safety checks — all in one place.</p>
+            <p class="subline">
+              Replace this line with your real descriptor (fleet, owner-operators, dispatch, etc.).
+            </p>
+            <p class="contactline">
+              Contact: <a href="mailto:you@email.com">you@email.com</a>
+              <span class="dotsep">·</span>
+              <a href="#" onclick="alert('Replace this with your real scheduling link.'); return false;">Book a time</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#tab-vehicles" data-nav="vehicles">Manage Drivers</a>
+          <a class="btn" href="#tab-contact" data-nav="contact">Contact</a>
+        </div>
       </div>
+
+      <!-- Tab nav (matches the AllDrive style: simple, horizontal, app-like) -->
+      <nav class="tabs" aria-label="App navigation">
+        <button class="tab active" data-tab="home">Home</button>
+        <button class="tab" data-tab="about-drivers">About Drivers</button>
+        <button class="tab" data-tab="about-ready">About Ready Central</button>
+        <button class="tab" data-tab="vehicles">Drivers</button>
+        <button class="tab" data-tab="checklist">Readiness Checklist</button>
+        <button class="tab" data-tab="calc">Readiness Calc</button>
+        <button class="tab" data-tab="logs">Activity Log</button>
+        <button class="tab" data-tab="export">Export / Import</button>
+        <button class="tab" data-tab="contact">Contact</button>
+      </nav>
     </div>
   </header>
 
-  <!-- Sidebar + overlay -->
-  <div class="overlay" id="overlay" aria-hidden="true"></div>
-  <aside class="sidebar" id="sidebar" aria-label="Sidebar Navigation">
-    <div class="sidebar-header">
-      <div class="sidebar-brand">
-        <div class="logo small">
-          <img
-            src="assets/images/ready-central-logo-small.png"
-            alt="Ready Central logo"
-            loading="lazy"
-          />
+  <main class="container app" id="app">
+    <!-- HOME -->
+    <section class="panel tab-panel active" id="tab-home" data-panel="home">
+      <h2>Ready Central</h2>
+      <p class="lead">
+        Track drivers, readiness steps, simple calculations, and logs — stored locally in your browser.
+        Export/import lets you back up data or share with a dispatcher/manager.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>What this app does</h3>
+          <ul class="bullets">
+            <li>Save drivers (identifier, license/med dates, notes)</li>
+            <li>Run a readiness checklist before rolling</li>
+            <li>Simple readiness score calculator</li>
+            <li>Log activity (inspections, docs, issues)</li>
+            <li>Export/import JSON + download CSV for logs</li>
+          </ul>
         </div>
+
+        <div class="card">
+          <h3>Important note</h3>
+          <p class="muted">
+            Data is stored in <strong>this browser only</strong> (localStorage). If you switch devices/browsers,
+            you’ll want to use Export/Import.
+          </p>
+          <div class="row">
+            <button class="btn" data-nav="export">Go to Export / Import</button>
+            <button class="btn" data-nav="vehicles">Add Drivers</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT DRIVERS -->
+    <section class="panel tab-panel" id="tab-about-drivers" data-panel="about-drivers">
+      <h2>About Drivers</h2>
+      <p class="lead">
+        Drivers are the backbone of execution. Ready Central is designed to help drivers
+        stay organized and prepared — reducing last-minute surprises and delays.
+      </p>
+      <div class="card">
+        <h3>Driver-first focus</h3>
+        <ul class="bullets">
+          <li>Clear readiness steps that are fast on mobile</li>
+          <li>Documentation reminders (med card, license, inspections)</li>
+          <li>Consistent check habits that improve safety and reliability</li>
+          <li>Simple logs that help dispatch/ops understand what’s happening</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABOUT READY CENTRAL -->
+    <section class="panel tab-panel" id="tab-about-ready" data-panel="about-ready">
+      <h2>About Ready Central</h2>
+      <p class="lead">
+        Ready Central is a centralized readiness hub for drivers and teams.
+        The goal is simple: fewer delays, fewer unknowns, smoother handoffs.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Why it exists</h3>
+          <p class="muted">
+            Small missing details cause big delays: documents, equipment issues, unclear load status,
+            and miscommunication. Ready Central makes readiness visible.
+          </p>
+        </div>
+        <div class="card">
+          <h3>What you can build next</h3>
+          <ul class="bullets">
+            <li>Dispatcher dashboard</li>
+            <li>Per-driver checklist templates</li>
+            <li>Photo uploads (docs/inspection)</li>
+            <li>Login + cloud sync (future upgrade)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRIVERS (similar to Vehicles section on AllDrive) -->
+    <section class="panel tab-panel" id="tab-vehicles" data-panel="vehicles">
+      <h2>Drivers</h2>
+      <p class="muted">Add drivers with key readiness info. (Stored locally in this browser.)</p>
+
+      <form class="form" id="driverForm">
+        <div class="grid-3">
+          <div>
+            <label for="d_name">Name / Identifier</label>
+            <input id="d_name" required placeholder="e.g., J. Smith / Unit 12" />
+          </div>
+          <div>
+            <label for="d_license">License Exp (optional)</label>
+            <input id="d_license" type="date" />
+          </div>
+          <div>
+            <label for="d_med">Med Card Exp (optional)</label>
+            <input id="d_med" type="date" />
+          </div>
+        </div>
+
         <div>
-          <div class="sidebar-title">Ready Central</div>
-          <div class="sidebar-sub">Quick navigation</div>
-        </div>
-      </div>
-
-      <button class="xbtn" id="closeBtn" type="button" aria-label="Close Menu">✕</button>
-    </div>
-
-    <nav class="side-links">
-      <a href="#top" data-close>Home</a>
-      <a href="#services" data-close>Overview</a>
-      <a href="#how" data-close>How It Works</a>
-      <a href="#about" data-close>About</a>
-      <a href="#contact" data-close>Contact</a>
-    </nav>
-
-    <div class="side-note">
-      <strong>Template-ready:</strong> Replace text, images, and links anytime.
-    </div>
-  </aside>
-
-  <!-- Banner / Hero -->
-  <section class="banner" id="top" aria-label="Hero">
-    <div class="container hero">
-      <div class="hero-grid">
-        <div class="card hero-card">
-          <div class="kicker"><span class="dot"></span> Where drivers stay ready</div>
-
-          <h1>Ready Central</h1>
-          <h1 class="h1-sub">Clarity before the wheels roll</h1>
-
-          <p class="lead">
-            Ready Central helps drivers stay organized, compliant, and prepared —
-            reducing delays, missed steps, and last-minute surprises.
-          </p>
-
-          <div class="cta-row">
-            <a class="btn primary" href="#services">See Overview</a>
-            <a class="btn" href="#contact">Request Info</a>
-          </div>
-
-          <p class="tiny">
-            Built to be simple, fast, and mobile-friendly — perfect for fleets and owner-operators.
-          </p>
+          <label for="d_notes">Notes</label>
+          <textarea id="d_notes" placeholder="Training, endorsements, equipment notes..."></textarea>
         </div>
 
-        <div class="card stats" aria-label="Highlights">
-          <div class="stat">
-            <strong>Fast</strong>
-            <span>Simple workflow</span>
+        <div class="row">
+          <button class="btn primary" type="submit">Save Driver</button>
+          <button class="btn" type="button" id="driverClear">Clear</button>
+        </div>
+      </form>
+
+      <h3 class="section-sub">Saved Drivers</h3>
+      <div id="driverList" class="list"></div>
+    </section>
+
+    <!-- CHECKLIST (like Diagnostics / Maintenance style section) -->
+    <section class="panel tab-panel" id="tab-checklist" data-panel="checklist">
+      <h2>Readiness Checklist</h2>
+      <p class="muted">Pick a driver, complete the steps, and save a readiness record to the log.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <label for="cl_driver">Driver</label>
+          <select id="cl_driver"></select>
+
+          <div class="checklist">
+            <label class="check"><input type="checkbox" data-item="Docs verified (license/med/insurance)" /> Docs verified (license/med/insurance)</label>
+            <label class="check"><input type="checkbox" data-item="Pre-trip inspection completed" /> Pre-trip inspection completed</label>
+            <label class="check"><input type="checkbox" data-item="Load details confirmed (pickup/drop/time)" /> Load details confirmed (pickup/drop/time)</label>
+            <label class="check"><input type="checkbox" data-item="Route & restrictions reviewed" /> Route & restrictions reviewed</label>
+            <label class="check"><input type="checkbox" data-item="Equipment check (straps/chains/tires/lights)" /> Equipment check (straps/chains/tires/lights)</label>
+            <label class="check"><input type="checkbox" data-item="Communication confirmed (dispatch contact)" /> Communication confirmed (dispatch contact)</label>
           </div>
-          <div class="stat">
-            <strong>Clear</strong>
-            <span>One place to prep</span>
+
+          <div class="row">
+            <button class="btn primary" id="saveChecklist" type="button">Save Checklist Result</button>
+            <button class="btn" id="resetChecklist" type="button">Reset</button>
           </div>
-          <div class="stat">
-            <strong>Ready</strong>
-            <span>Less last-minute</span>
-          </div>
-          <div class="stat">
-            <strong>Mobile</strong>
-            <span>Works anywhere</span>
-          </div>
-          <div class="stat">
-            <strong>Flexible</strong>
-            <span>Fleet or solo</span>
-          </div>
-          <div class="stat">
-            <strong>Free host</strong>
-            <span>GitHub Pages</span>
+        </div>
+
+        <div class="card">
+          <h3>How it’s stored</h3>
+          <p class="muted">
+            When you save, this creates an entry in the Activity Log.
+            Use Export/Import to back up or share.
+          </p>
+          <div class="row">
+            <button class="btn" data-nav="logs">Go to Activity Log</button>
+            <button class="btn" data-nav="export">Go to Export / Import</button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Overview / Service Cards -->
-  <section id="services">
-    <div class="container">
-      <div class="section-head">
+    <!-- CALC (like Tow Calc) -->
+    <section class="panel tab-panel" id="tab-calc" data-panel="calc">
+      <h2>Readiness Calculator</h2>
+      <p class="muted">
+        Simple readiness score: checklist completion + document status + optional fatigue factor.
+      </p>
+
+      <div class="card">
+        <div class="grid-3">
+          <div>
+            <label for="rc_driver">Driver</label>
+            <select id="rc_driver"></select>
+          </div>
+          <div>
+            <label for="rc_docs">Docs status</label>
+            <select id="rc_docs">
+              <option value="1">All valid</option>
+              <option value="0.7">One expiring soon</option>
+              <option value="0.4">Missing/expired</option>
+            </select>
+          </div>
+          <div>
+            <label for="rc_fatigue">Fatigue factor</label>
+            <select id="rc_fatigue">
+              <option value="1">Normal</option>
+              <option value="0.85">Tired</option>
+              <option value="0.7">Very tired</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label for="rc_check">Checklist completion (%)</label>
+            <input id="rc_check" type="number" min="0" max="100" value="100" />
+          </div>
+          <div class="row end">
+            <button class="btn primary" id="calcBtn" type="button">Calculate</button>
+          </div>
+        </div>
+
+        <div class="result" id="calcResult" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- LOGS (like Maintenance Log) -->
+    <section class="panel tab-panel" id="tab-logs" data-panel="logs">
+      <h2>Activity Log</h2>
+      <p class="muted">Log inspections, issues, checklist results, or general notes.</p>
+
+      <form class="form" id="logForm">
+        <div class="grid-3">
+          <div>
+            <label for="l_driver">Driver</label>
+            <select id="l_driver"></select>
+          </div>
+          <div>
+            <label for="l_date">Date</label>
+            <input id="l_date" type="date" required />
+          </div>
+          <div>
+            <label for="l_type">Type</label>
+            <select id="l_type">
+              <option>Inspection</option>
+              <option>Documentation</option>
+              <option>Issue</option>
+              <option>Checklist</option>
+              <option>Note</option>
+            </select>
+          </div>
+        </div>
+
         <div>
-          <h2>Overview</h2>
-          <p class="sub">
-            Two key sections you requested — About Drivers and About Ready Central — plus a third card for positioning.
-          </p>
+          <label for="l_notes">Notes</label>
+          <textarea id="l_notes" placeholder="What happened? What was checked/fixed/verified?"></textarea>
         </div>
+
+        <div class="row">
+          <button class="btn primary" type="submit">Add Entry</button>
+          <button class="btn" type="button" id="logClear">Clear</button>
+        </div>
+      </form>
+
+      <h3 class="section-sub">Logged Activity</h3>
+      <div class="row wrap">
+        <button class="btn" id="downloadLogsCsv" type="button">Download CSV (Logs)</button>
+        <button class="btn danger" id="clearLogs" type="button">Clear Logs</button>
       </div>
 
-      <div class="grid-3">
-        <div class="card feature">
-          <div class="icon">🚛</div>
-          <h3>About Drivers</h3>
-          <p>
-            Ready Central helps drivers stay organized, compliant, and prepared.
-            Keep critical steps and documents in one place so dispatch and operations
-            aren’t guessing — and you aren’t scrambling.
-          </p>
+      <div id="logList" class="list"></div>
+    </section>
+
+    <!-- EXPORT / IMPORT (same concept as AllDrive) -->
+    <section class="panel tab-panel" id="tab-export" data-panel="export">
+      <h2>Export / Import Data</h2>
+      <p class="muted">
+        Export drivers + logs as JSON for backup/sharing. Import replaces current local data in this browser.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Export</h3>
+          <div class="row wrap">
+            <button class="btn primary" id="exportJson" type="button">Export JSON</button>
+            <button class="btn" id="copyJson" type="button">Copy JSON</button>
+          </div>
+          <textarea id="jsonBox" class="mono" readonly placeholder="Your exported JSON will appear here..."></textarea>
         </div>
 
-        <div class="card feature">
-          <div class="icon">📍</div>
-          <h3>About Ready Central</h3>
-          <p>
-            Ready Central is a centralized readiness hub built to reduce delays,
-            miscommunication, and last-minute issues between drivers, dispatch, and
-            operations teams.
-          </p>
-        </div>
-
-        <div class="card feature">
-          <div class="icon">⚡</div>
-          <h3>Built for Speed & Clarity</h3>
-          <p>
-            Designed to be simple and fast on mobile. Clear readiness steps,
-            fewer surprises, smoother handoffs — and more on-time rollouts.
-          </p>
+        <div class="card">
+          <h3>Import</h3>
+          <p class="muted">Paste exported JSON here and click Import. This replaces current data.</p>
+          <textarea id="importBox" class="mono" placeholder='Paste JSON here...'></textarea>
+          <div class="row wrap">
+            <button class="btn primary" id="importJson" type="button">Import Data</button>
+            <button class="btn danger" id="clearAll" type="button">Clear All Local Data</button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- How it works -->
-  <section id="how">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>How It Works</h2>
-          <p class="sub">A clean 3-step flow that’s easy to explain to anyone on the team.</p>
-        </div>
-      </div>
+    <!-- CONTACT (simple, matches app style) -->
+    <section class="panel tab-panel" id="tab-contact" data-panel="contact">
+      <h2>Contact</h2>
+      <p class="muted">Replace with your real email/phone and a scheduling link if you want.</p>
 
-      <div class="grid-3">
-        <div class="card feature">
-          <div class="icon">1</div>
-          <h3>Prepare</h3>
-          <p>Driver checks readiness items and documents before heading out.</p>
-        </div>
-        <div class="card feature">
-          <div class="icon">2</div>
-          <h3>Verify</h3>
-          <p>Dispatch/ops can confirm key details quickly and reduce back-and-forth.</p>
-        </div>
-        <div class="card feature">
-          <div class="icon">3</div>
-          <h3>Move</h3>
-          <p>Less delay, fewer surprises, smoother execution from start to finish.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>About</h2>
-          <p class="sub">Use this section to tell the “why” in 2–5 sentences.</p>
-        </div>
-      </div>
-
-      <div class="card about-card">
-        <p>
-          <strong>Ready Central</strong> is built around one idea: preparedness prevents problems.
-          By centralizing readiness steps and communication, teams can reduce delays and keep loads moving.
-          This landing page is GitHub Pages friendly — no servers required.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Contact</h2>
-          <p class="sub">
-            This contact form copies a formatted message to clipboard (works on GitHub Pages).
-            You can swap it later for a Google Form or CRM.
-          </p>
-        </div>
-      </div>
-
-      <div class="contact">
-        <div class="card contact-info">
+      <div class="grid-2">
+        <div class="card">
           <h3>Contact Info</h3>
-          <p>
-            <strong>Email:</strong> yourname@email.com<br />
-            <strong>Phone:</strong> (000) 000-0000<br />
-            <strong>Service Area:</strong> Nationwide / Your Region<br />
-            <strong>Hours:</strong> Mon–Fri, 9am–5pm
+          <p class="muted">
+            <strong>Email:</strong> you@email.com<br/>
+            <strong>Phone:</strong> (000) 000-0000<br/>
+            <strong>Coverage:</strong> Your region / Nationwide<br/>
           </p>
-          <a class="btn" href="mailto:yourname@email.com?subject=Ready%20Central%20Inquiry">Email from device</a>
-          <p class="tiny">Replace this info with your real contact details.</p>
+          <div class="row wrap">
+            <a class="btn primary" href="mailto:you@email.com?subject=Ready%20Central%20Inquiry">Email</a>
+            <button class="btn" onclick="alert('Replace with your scheduling link.');">Book a time</button>
+          </div>
         </div>
 
-        <form class="card contact-form" id="contactForm">
-          <h3>Quick Message</h3>
-          <p class="tiny">We’ll copy your message so you can paste it anywhere.</p>
-
-          <label for="name">Name</label>
-          <input id="name" name="name" placeholder="Your name" autocomplete="name" />
-
-          <label for="email">Email</label>
-          <input id="email" name="email" placeholder="you@email.com" autocomplete="email" />
-
-          <label for="msg">Message</label>
-          <textarea id="msg" name="msg" placeholder="What do you need help with?"></textarea>
-
-          <div class="form-actions">
-            <button class="btn primary" type="submit">Copy Message</button>
-            <button class="btn" type="button" id="clearBtn">Clear</button>
-          </div>
-        </form>
+        <div class="card">
+          <h3>Tip</h3>
+          <p class="muted">
+            Use <strong>Export / Import</strong> to send your driver + log data to someone supporting your operation.
+          </p>
+          <button class="btn" data-nav="export">Go to Export / Import</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div class="container footer-row">
-      <div>© <span id="year"></span> Ready Central</div>
-      <div class="footer-links">
-        <a href="#services">Overview</a>
-        <a href="#how">How It Works</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
+    <footer class="footer">
+      <p>© <span id="year"></span> Ready Central. Built as a simple, local-first readiness manager.</p>
+    </footer>
+  </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
