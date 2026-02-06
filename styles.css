@@ -39,6 +39,16 @@ a{color:inherit}
 
 .hero-inner{display:flex; flex-direction:column; gap:14px;}
 
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1,
+.hero p {
+  text-shadow: 0 4px 20px rgba(0,0,0,.65);
+}
+
 .hero-top{
   display:flex;
   align-items:flex-start;
