@@ -53,19 +53,38 @@ a{color:inherit}
   align-items:flex-start;
 }
 
+/* Force logo to stay small */
 .logo{
-  width:48px;height:48px;
+  width: 48px;
+  height: 48px;
   border-radius: 16px;
+  overflow: hidden;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  display:grid; place-items:center;
+  display: grid;
+  place-items: center;
 }
 
 .logo img{
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
+}
+
+/* Banner image like AllDrive */
+.banner-wrap{
+  margin-top: 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+}
+
+.banner-img{
+  width: 100%;
+  height: 240px;       /* adjust if you want taller */
+  object-fit: cover;
   display: block;
 }
 
