@@ -33,6 +33,35 @@ function uid(){
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
+// --- Sticky hero collapse (smooth, non-jumpy) ---
+const hero = document.querySelector(".hero");
+let collapsed = false;
+let ticking = false;
+
+function setCollapsed(next) {
+  if (!hero || next === collapsed) return;
+  collapsed = next;
+  hero.classList.toggle("is-collapsed", collapsed);
+}
+
+function onScroll() {
+  if (ticking) return;
+  ticking = true;
+
+  requestAnimationFrame(() => {
+    setCollapsed(window.scrollY > 60);
+    ticking = false;
+  });
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+// Collapse immediately when user clicks a tab or any data-nav button
+document.querySelectorAll(".tab, [data-nav]").forEach((el) => {
+  el.addEventListener("click", () => setCollapsed(true));
+});
+
 // State
 let drivers = load(STORAGE_KEYS.drivers, []);
 let logs = load(STORAGE_KEYS.logs, []);
