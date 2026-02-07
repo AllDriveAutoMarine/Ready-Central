@@ -33,6 +33,24 @@ function uid(){
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
+// Collapse immediately when user clicks a tab or any data-nav button
+document.querySelectorAll(".tab, [data-nav]").forEach((el) => {
+  el.addEventListener("click", () => setCollapsed(true));
+});
+
+// State
+let drivers = load(STORAGE_KEYS.drivers, []);
+let logs = load(STORAGE_KEYS.logs, []);
+
+// Tabs (match AllDrive feel: click to swap sections)
+function setActiveTab(name){
+  $$(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
+  $$(".tab-panel").forEach(p => p.classList.toggle("active", p.dataset.panel === name));
+  // update hash for shareability
+  const el = document.getElementById(`tab-${name}`);
+  if(el) history.replaceState(null, "", `#tab-${name}`);
+}
+
 // --- Sticky hero collapse (smooth, non-jumpy) ---
 const hero = document.querySelector(".hero");
 let collapsed = false;
@@ -56,24 +74,6 @@ function onScroll() {
 
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
-
-// Collapse immediately when user clicks a tab or any data-nav button
-document.querySelectorAll(".tab, [data-nav]").forEach((el) => {
-  el.addEventListener("click", () => setCollapsed(true));
-});
-
-// State
-let drivers = load(STORAGE_KEYS.drivers, []);
-let logs = load(STORAGE_KEYS.logs, []);
-
-// Tabs (match AllDrive feel: click to swap sections)
-function setActiveTab(name){
-  $$(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
-  $$(".tab-panel").forEach(p => p.classList.toggle("active", p.dataset.panel === name));
-  // update hash for shareability
-  const el = document.getElementById(`tab-${name}`);
-  if(el) history.replaceState(null, "", `#tab-${name}`);
-}
 
 function bindTabs(){
   $$(".tab").forEach(btn=>{
