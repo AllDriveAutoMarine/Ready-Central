@@ -390,13 +390,13 @@ textarea{min-height: 96px; resize: vertical;}
 }
 
 /* =========================
-   COLLAPSING HERO + STICKY
+   NO-JUMP COLLAPSING HEADER
    ========================= */
 
-/* Make the banner follow you as the page background */
-body {
+/* Keep background image following you */
+body{
   background:
-    linear-gradient(180deg, rgba(7,10,20,0.88), rgba(7,10,20,0.88)),
+    linear-gradient(180deg, rgba(7,10,20,.88), rgba(7,10,20,.88)),
     url("assets/images/ready-central-banner.jpg");
   background-size: cover;
   background-position: center;
@@ -404,85 +404,69 @@ body {
   background-attachment: fixed;
 }
 
-/* Hero becomes a glass header overlay (not the background image itself) */
-.hero {
+/* Sticky header with STABLE height */
+.hero{
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10,14,28,.62);
+
+  /* stable header height prevents jumping */
+  height: 240px;
+  overflow: hidden;
+
+  background: rgba(10,14,28,.70);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,.10);
-  transition: padding .25s ease, background .25s ease;
 }
 
-/* Smooth height collapse using spacing + hiding the extra lines */
+/* Smooth collapse: transform content, don’t change layout */
+.hero-top{
+  transition: transform .25s ease, opacity .2s ease;
+  will-change: transform;
+}
+
+/* Expanded defaults */
 .hero .tagline,
 .hero .subline,
 .hero .contactline,
-.hero .hero-actions {
-  transition: opacity .2s ease, transform .25s ease, max-height .25s ease;
+.hero .hero-actions{
+  transition: opacity .18s ease, transform .25s ease;
 }
 
-/* Default (expanded) */
-.hero {
-  padding: 26px 0 14px;
+/* Collapsed state */
+.hero.is-collapsed .hero-top{
+  transform: translateY(-44px);
 }
 
-/* Collapsed state (added by JS) */
-.hero.is-collapsed {
-  padding: 10px 0 8px;
-  background: rgba(10,14,28,.78);
-}
-
-/* Hide extra hero content when collapsed */
+/* Hide extra lines smoothly, without changing header height */
 .hero.is-collapsed .tagline,
 .hero.is-collapsed .subline,
 .hero.is-collapsed .contactline,
-.hero.is-collapsed .hero-actions {
+.hero.is-collapsed .hero-actions{
   opacity: 0;
-  transform: translateY(-6px);
-  max-height: 0;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0 !important;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
-/* Slightly shrink title + logo when collapsed */
-.hero.is-collapsed .logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
+/* Tabs stay visible + stable */
+.tabs{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
 }
 
-.hero.is-collapsed h1 {
-  font-size: 20px;
-  margin: 0;
-}
-
-/* Tabs should still be accessible */
-.tabs {
-  margin-top: 10px;
-}
-
-/* In collapsed mode, tabs get tighter */
-.hero.is-collapsed .tabs {
-  margin-top: 6px;
-}
-
-/* Mobile: make tabs scroll horizontally instead of wrapping */
-@media (max-width: 768px) {
-  .tabs {
+/* Mobile height tuning */
+@media (max-width: 768px){
+  .hero{ height: 270px; }
+  .tabs{
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    padding-bottom: 6px;
   }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 0 0 auto; }
-}
-
-/* Ensure your content doesn't get hidden behind the sticky header */
-.app {
-  padding-top: 14px;
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{ flex: 0 0 auto; }
 }
