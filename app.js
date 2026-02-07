@@ -464,3 +464,28 @@ function renderAll(){
   const year = $("#year");
   if(year) year.textContent = new Date().getFullYear();
 })();
+
+// --- Collapse hero on scroll + on tab click (sticky compact header) ---
+const hero = document.querySelector(".hero");
+
+function setCollapsed(collapsed) {
+  if (!hero) return;
+  hero.classList.toggle("is-collapsed", collapsed);
+}
+
+// Collapse after a small scroll threshold
+function onScroll() {
+  setCollapsed(window.scrollY > 40);
+}
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+// Also collapse immediately when user clicks a tab (feels app-like)
+document.querySelectorAll(".tab").forEach((btn) => {
+  btn.addEventListener("click", () => setCollapsed(true));
+});
+
+// Optional: collapse when user clicks any "data-nav" button too
+document.querySelectorAll("[data-nav]").forEach((el) => {
+  el.addEventListener("click", () => setCollapsed(true));
+});
