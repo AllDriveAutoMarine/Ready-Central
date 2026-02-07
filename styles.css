@@ -36,9 +36,10 @@ a{color:inherit}
     url("assets/images/ready-central-banner.png");
   background-size: cover;
   background-position: center;
-}*/
+}
 
-.hero-inner{display:flex; flex-direction:column; gap:14px;}
+.hero-inner{display:flex; flex-direction:column; gap:14px;
+           }
 
 .hero-inner {
   position: relative;
