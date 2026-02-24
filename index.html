@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Ready Central — driver readiness, tracking, and export/import in one place." />
-  <title>Ready Central — Driver Readiness Manager</title>
+  <meta name="description" content="Ready Central — driver readiness, documentation, and safety checks." />
+  <title>Ready Central</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -14,40 +14,27 @@
       <div class="hero-top">
         <div class="brand">
           <div class="logo" aria-hidden="true">
-            <!-- Inline SVG logo (no file needed) -->
-            <svg viewBox="0 0 64 64" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="rcg" x1="10" y1="6" x2="58" y2="56" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#6EA8FF"/>
-                  <stop offset="1" stop-color="#7CF0D6"/>
-                </linearGradient>
-              </defs>
-              <path d="M12 38c0-14 10-26 26-26 8 0 14 2 20 7l-7 7c-4-3-8-4-13-4-10 0-16 7-16 16 0 9 6 16 16 16 6 0 10-2 14-5l7 7c-6 5-13 8-22 8C22 64 12 52 12 38Z" fill="url(#rcg)"/>
-              <path d="M48 18l4 4-24 24-12-12 4-4 8 8 20-20Z" fill="rgba(234,240,255,.95)"/>
-            </svg>
+            <img src="assets/images/ready-central-logo-small.png" alt="Ready Central logo" />
           </div>
 
           <div class="brand-text">
             <h1>Ready Central</h1>
             <p class="tagline">Driver readiness, documentation, and safety checks — all in one place.</p>
-            <p class="subline">
-              Replace this line with your real descriptor (fleet, owner-operators, dispatch, etc.).
-            </p>
+            <p class="subline">Replace this line with your real descriptor (fleet, owner-operators, dispatch, etc.).</p>
             <p class="contactline">
               Contact: <a href="mailto:you@email.com">you@email.com</a>
               <span class="dotsep">·</span>
-              <a href="#" onclick="alert('Replace this with your real scheduling link.'); return false;">Book a time</a>
+              <a href="#" onclick="alert('Replace with your scheduling link'); return false;">Book a time</a>
             </p>
-          </div>
-        </div>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="#tab-vehicles" data-nav="vehicles">Manage Drivers</a>
-          <a class="btn" href="#tab-contact" data-nav="contact">Contact</a>
+            <div class="hero-actions">
+              <button class="btn primary" type="button" data-nav="vehicles">Manage Drivers</button>
+              <button class="btn" type="button" data-nav="contact">Contact</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Tab nav (matches the AllDrive style: simple, horizontal, app-like) -->
       <nav class="tabs" aria-label="App navigation">
         <button class="tab active" data-tab="home">Home</button>
         <button class="tab" data-tab="about-drivers">About Drivers</button>
@@ -86,12 +73,12 @@
         <div class="card">
           <h3>Important note</h3>
           <p class="muted">
-            Data is stored in <strong>this browser only</strong> (localStorage). If you switch devices/browsers,
-            you’ll want to use Export/Import.
+            Data is stored in <strong>this browser only</strong> (localStorage).
+            Use Export/Import for backups or moving to another device.
           </p>
-          <div class="row">
-            <button class="btn" data-nav="export">Go to Export / Import</button>
-            <button class="btn" data-nav="vehicles">Add Drivers</button>
+          <div class="row wrap">
+            <button class="btn" data-nav="export" type="button">Go to Export / Import</button>
+            <button class="btn" data-nav="vehicles" type="button">Add Drivers</button>
           </div>
         </div>
       </div>
@@ -101,9 +88,10 @@
     <section class="panel tab-panel" id="tab-about-drivers" data-panel="about-drivers">
       <h2>About Drivers</h2>
       <p class="lead">
-        Drivers are the backbone of execution. Ready Central is designed to help drivers
-        stay organized and prepared — reducing last-minute surprises and delays.
+        Drivers are the backbone of execution. Ready Central helps drivers stay organized and prepared —
+        reducing last-minute surprises and delays.
       </p>
+
       <div class="card">
         <h3>Driver-first focus</h3>
         <ul class="bullets">
@@ -122,6 +110,7 @@
         Ready Central is a centralized readiness hub for drivers and teams.
         The goal is simple: fewer delays, fewer unknowns, smoother handoffs.
       </p>
+
       <div class="grid-2">
         <div class="card">
           <h3>Why it exists</h3>
@@ -142,7 +131,7 @@
       </div>
     </section>
 
-    <!-- DRIVERS (similar to Vehicles section on AllDrive) -->
+    <!-- DRIVERS -->
     <section class="panel tab-panel" id="tab-vehicles" data-panel="vehicles">
       <h2>Drivers</h2>
       <p class="muted">Add drivers with key readiness info. (Stored locally in this browser.)</p>
@@ -168,7 +157,7 @@
           <textarea id="d_notes" placeholder="Training, endorsements, equipment notes..."></textarea>
         </div>
 
-        <div class="row">
+        <div class="row wrap">
           <button class="btn primary" type="submit">Save Driver</button>
           <button class="btn" type="button" id="driverClear">Clear</button>
         </div>
@@ -178,7 +167,7 @@
       <div id="driverList" class="list"></div>
     </section>
 
-    <!-- CHECKLIST (like Diagnostics / Maintenance style section) -->
+    <!-- CHECKLIST -->
     <section class="panel tab-panel" id="tab-checklist" data-panel="checklist">
       <h2>Readiness Checklist</h2>
       <p class="muted">Pick a driver, complete the steps, and save a readiness record to the log.</p>
@@ -197,7 +186,7 @@
             <label class="check"><input type="checkbox" data-item="Communication confirmed (dispatch contact)" /> Communication confirmed (dispatch contact)</label>
           </div>
 
-          <div class="row">
+          <div class="row wrap">
             <button class="btn primary" id="saveChecklist" type="button">Save Checklist Result</button>
             <button class="btn" id="resetChecklist" type="button">Reset</button>
           </div>
@@ -209,15 +198,15 @@
             When you save, this creates an entry in the Activity Log.
             Use Export/Import to back up or share.
           </p>
-          <div class="row">
-            <button class="btn" data-nav="logs">Go to Activity Log</button>
-            <button class="btn" data-nav="export">Go to Export / Import</button>
+          <div class="row wrap">
+            <button class="btn" data-nav="logs" type="button">Go to Activity Log</button>
+            <button class="btn" data-nav="export" type="button">Go to Export / Import</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CALC (like Tow Calc) -->
+    <!-- CALC -->
     <section class="panel tab-panel" id="tab-calc" data-panel="calc">
       <h2>Readiness Calculator</h2>
       <p class="muted">
@@ -262,7 +251,7 @@
       </div>
     </section>
 
-    <!-- LOGS (like Maintenance Log) -->
+    <!-- LOGS -->
     <section class="panel tab-panel" id="tab-logs" data-panel="logs">
       <h2>Activity Log</h2>
       <p class="muted">Log inspections, issues, checklist results, or general notes.</p>
@@ -294,7 +283,7 @@
           <textarea id="l_notes" placeholder="What happened? What was checked/fixed/verified?"></textarea>
         </div>
 
-        <div class="row">
+        <div class="row wrap">
           <button class="btn primary" type="submit">Add Entry</button>
           <button class="btn" type="button" id="logClear">Clear</button>
         </div>
@@ -309,7 +298,7 @@
       <div id="logList" class="list"></div>
     </section>
 
-    <!-- EXPORT / IMPORT (same concept as AllDrive) -->
+    <!-- EXPORT / IMPORT -->
     <section class="panel tab-panel" id="tab-export" data-panel="export">
       <h2>Export / Import Data</h2>
       <p class="muted">
@@ -338,7 +327,7 @@
       </div>
     </section>
 
-    <!-- CONTACT (simple, matches app style) -->
+    <!-- CONTACT -->
     <section class="panel tab-panel" id="tab-contact" data-panel="contact">
       <h2>Contact</h2>
       <p class="muted">Replace with your real email/phone and a scheduling link if you want.</p>
@@ -353,7 +342,7 @@
           </p>
           <div class="row wrap">
             <a class="btn primary" href="mailto:you@email.com?subject=Ready%20Central%20Inquiry">Email</a>
-            <button class="btn" onclick="alert('Replace with your scheduling link.');">Book a time</button>
+            <button class="btn" type="button" onclick="alert('Replace with your scheduling link.');">Book a time</button>
           </div>
         </div>
 
@@ -362,13 +351,13 @@
           <p class="muted">
             Use <strong>Export / Import</strong> to send your driver + log data to someone supporting your operation.
           </p>
-          <button class="btn" data-nav="export">Go to Export / Import</button>
+          <button class="btn" data-nav="export" type="button">Go to Export / Import</button>
         </div>
       </div>
     </section>
 
     <footer class="footer">
-      <p>© <span id="year"></span> Ready Central. Built as a simple, local-first readiness manager.</p>
+      <p>© <span id="year"></span> Ready Central</p>
     </footer>
   </main>
 
