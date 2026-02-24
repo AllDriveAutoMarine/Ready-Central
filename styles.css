@@ -34,7 +34,7 @@ a{color:inherit}
 
   background:
     linear-gradient(180deg, rgba(10,14,28,.88) 0%, rgba(10,14,28,.55) 50%, rgba(10,14,28,.92) 100%),
-    url("assets/images/ready-central-banner.jpg");
+    url("assets/images/ready-central-banner.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
