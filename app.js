@@ -1,4 +1,4 @@
-// Ready Central — local-first app
+// Ready Central — local-first app (stable, no infinite scroll)
 const STORAGE_KEYS = {
   drivers: "rc_drivers_v1",
   logs: "rc_logs_v1"
@@ -24,26 +24,35 @@ function load(key, fallback){
     return fallback;
   }
 }
-
 function save(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 }
-
 function uid(){
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 // State
 let drivers = load(STORAGE_KEYS.drivers, []);
 let logs = load(STORAGE_KEYS.logs, []);
 
-// Tabs (match AllDrive feel: click to swap sections)
+// Tabs
 function setActiveTab(name){
   $$(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
   $$(".tab-panel").forEach(p => p.classList.toggle("active", p.dataset.panel === name));
-  // update hash for shareability
+
   const el = document.getElementById(`tab-${name}`);
   if(el) history.replaceState(null, "", `#tab-${name}`);
+
+  // smooth to top on mobile
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function bindTabs(){
@@ -51,30 +60,28 @@ function bindTabs(){
     btn.addEventListener("click", ()=> setActiveTab(btn.dataset.tab));
   });
 
-  // “data-nav” buttons inside content
   $$("[data-nav]").forEach(el=>{
     el.addEventListener("click", ()=>{
       const target = el.getAttribute("data-nav");
-      setActiveTab(target);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if($(`.tab[data-tab="${target}"]`)) setActiveTab(target);
     });
   });
 
   // hash load
   const hash = location.hash || "";
   const match = hash.match(/#tab-([a-z-]+)/i);
-  if(match && match[1]){
-    const name = match[1];
-    if($(`.tab[data-tab="${name}"]`)) setActiveTab(name);
+  if(match && match[1] && $(`.tab[data-tab="${match[1]}"]`)){
+    setActiveTab(match[1]);
   }
 }
 
-// Render drivers into lists + dropdowns
+// Render drivers into list + dropdowns
 function renderDrivers(){
   const list = $("#driverList");
+
   if(list){
     if(drivers.length === 0){
-      list.innerHTML = `<div class="item"><div><h4>No drivers saved yet</h4><p>Add a driver above.</p></div></div>`;
+      list.innerHTML = `<div class="item"><div><h4>No drivers saved yet</h4><p class="muted">Add a driver above.</p></div></div>`;
     } else {
       list.innerHTML = drivers.map(d => `
         <div class="item">
@@ -99,7 +106,6 @@ function renderDrivers(){
         const id = b.getAttribute("data-del");
         if(!confirm("Delete this driver?")) return;
         drivers = drivers.filter(x=>x.id !== id);
-        // also remove logs tied to driver? keep them but mark unknown
         save(STORAGE_KEYS.drivers, drivers);
         renderAll();
         toast("Driver deleted.");
@@ -131,15 +137,6 @@ function renderDrivers(){
       ? `<option value="">Select driver</option>${opts}`
       : `<option value="">No drivers saved</option>`;
   });
-}
-
-function escapeHtml(s){
-  return String(s)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 }
 
 // Drivers form
@@ -233,8 +230,6 @@ function bindCalc(){
     const fatigue = parseFloat($("#rc_fatigue").value);
     const check = Math.max(0, Math.min(100, parseFloat($("#rc_check").value || "0")));
 
-    // score formula (simple + explainable)
-    // base = checklist% * docs * fatigue
     const score = Math.round(check * docs * fatigue);
 
     let status = "GO";
@@ -251,7 +246,6 @@ function bindCalc(){
       <div class="muted" style="margin-top:8px;">${note}</div>
     `;
 
-    // Optional: add a log entry
     logs.unshift({
       id: uid(),
       driverId,
@@ -273,7 +267,7 @@ function renderLogs(){
   if(!list) return;
 
   if(logs.length === 0){
-    list.innerHTML = `<div class="item"><div><h4>No activity logged yet</h4><p>Add an entry above or save a checklist.</p></div></div>`;
+    list.innerHTML = `<div class="item"><div><h4>No activity logged yet</h4><p class="muted">Add an entry above or save a checklist.</p></div></div>`;
     return;
   }
 
@@ -307,7 +301,6 @@ function bindLogForm(){
   const clearBtn = $("#logClear");
   if(!form) return;
 
-  // default date today
   const d = $("#l_date");
   if(d && !d.value) d.value = new Date().toISOString().slice(0,10);
 
@@ -362,13 +355,11 @@ function logsToCSV(arr){
   ].join(","));
   return [header, ...rows].join("\n");
 }
-
 function safeCSV(v){
   const s = String(v ?? "");
   const escaped = s.replaceAll('"','""');
   return `"${escaped}"`;
 }
-
 function downloadFile(filename, content, mime){
   const blob = new Blob([content], { type: mime });
   const url = URL.createObjectURL(blob);
@@ -462,5 +453,5 @@ function renderAll(){
   renderAll();
 
   const year = $("#year");
-  if(year) year.textContent = new Date().getFullYear();
+  if (year) year.textContent = new Date().getFullYear();
 })();
